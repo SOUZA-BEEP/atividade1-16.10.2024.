@@ -70,10 +70,32 @@ INSERT INTO estaciona (cod, estacionamento_num, veiculo_matricula, dataentrada, 
 VALUES (1, 1, 'AA1234BB', '2024-11-27', '2024-11-27', '09:00:00', '12:00:00'), 
        (2, 2, 'CC5678DD', '2024-11-27', '2024-11-27', '14:00:00', '16:00:00');
 
-
+#a
 SELECT veiculo.matricula, cliente.nome
 FROM veiculo
-JOIN cliente ON veiculo.cliente_NIF = cliente.NIF;
+JOIN cliente 
+ON veiculo.cliente_NIF = cliente.NIF;
+#b
+SELECT cliente.NIF, cliente.nome
+FROM veiculo
+JOIN cliente 
+ON veiculo.NIF = cliente.NIF
+WHERE veiculo.matricula = '21-FC-41';
+#c
+SELECT veiculo.matricula
+FROM estaciona
+JOIN veiculo 
+ON estaciona.veiculo_matricula = veiculo.matricula
+WHERE estaciona.cod = 1;
+#d
+SELECT veiculo.matricula, (estaciona.dataentrada) 
+FROM estaciona
+JOIN veiculo 
+ON estaciona.veiculo_matricula = veiculo.matricula
+WHERE estaciona.cod = 1;
+#SELECT veiculo.matricula, nome
+FROM veiculo
+JOIN cliente ON cliente_NIF;
 
 #B
 SELECT cliente.NIF, cliente.nome
@@ -115,3 +137,4 @@ FROM estaciona
 JOIN veiculo ON estaciona.veiculo_matricula = veiculo.matricula
 JOIN cliente ON veiculo.cliente_NIF = cliente.NIF
 WHERE estaciona.estacionamento_num = 2;
+
